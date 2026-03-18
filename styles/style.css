@@ -69,25 +69,18 @@
   grid-row: 1;
 }
 .card-description {
-  font-family: var(--font-main), Helvetica, Arial, sans-serif;
-  font-variation-settings: "wght" 410;
-  padding: 20px 27px 0px 27px;
-  line-height: 21px;
-  letter-spacing: 6.5%;
-  grid-column: 1/-1;
   grid-row: 3;
 }
-.zero-sprint-card {
-  margin-block-start: 98px;
+.card-text {
+  font-family: var(--font-main), Helvetica, Arial, sans-serif;
+  padding: 20px 27px 25px 27px;
+  font-variation-settings: "wght" 410;
+  line-height: 21px;
+  letter-spacing: 0;
   grid-column: 1/-1;
 }
 .card-after-text {
-  padding: 25px 25px 25px 27px;
-  line-height: 21px;
-  letter-spacing: 6.5%;
-  grid-column: 1/-1;
   grid-row: 4;
-  font-family: var(--font-main), Helvetica, Arial, sans-serif;
 }
 .block-button {
   position: relative;
@@ -158,27 +151,6 @@
   font-family: var(--font-accent), Helvetica, Arial, sans-serif;
   font-size: 14px;
 }
-.first-sprint-card {
-  margin-block-start: 50px;
-}
-.first-sprint-if-card {
-  margin-top: 48px;
-}
-.second-sprint-card {
-  margin-block-start: 48px;
-}
-.second-sprint-about-card {
-  margin-block-start: 46px;
-}
-.third-sprint-card {
-  margin-block-start: 48px;
-}
-.third-sprint-when-card {
-  margin-block-start: 46px; /* пытался попасть в pixel-perfect значения макета, позже увидел, что контент нужен свой*/
-}
-.here-sprint-card {
-  margin-block-start: 47px;
-}
 .image-container {
   position: relative;
   grid-column: 1/-1;
@@ -194,35 +166,35 @@
   border-top: 2px solid var(--accent-color);
 }
 
-.first-sprint-image {
+.filter-bright-contrast {
   filter: brightness(0.9) contrast(1.2) saturate(1.3);
 }
 
-.first-sprint-if-image {
+.filter-grayscale-sepia {
   filter: grayscale(0.7) sepia(0.3);
 }
 
-.second-sprint-image {
+.filter-hue-saturate {
   filter: hue-rotate(25deg) saturate(1.4) brightness(1.1);
 }
 
-.second-sprint-about-image {
+.filter-sepia-contrast {
   filter: sepia(0.6) contrast(1.3);
 }
 
-.third-sprint-image {
+.filter-contrast-bright {
   filter: contrast(1.4) brightness(0.9) saturate(0.7);
 }
 
-.third-sprint-when-image {
+.filter-dark-blur {
   filter: brightness(0.5) contrast(1.5) blur(1px);
 }
 
-.here-sprint-image {
+.filter-purple {
   filter: hue-rotate(290deg) saturate(1.6) brightness(1.15) contrast(1.1);
 }
 
-.zero-sprint-image {
+.filter-grayscale {
   filter: grayscale(0.9) brightness(1.2);
 }
 
@@ -237,19 +209,19 @@
   color: rgba(0, 0, 0, 1);
   opacity: 0.5;
   mix-blend-mode: hard-light;
-  -webkit-text-stroke: 1px var(--text-stroke-color);
-  text-stroke: 1px var(--text-stroke-color);
+  -webkit-text-stroke: none;
+  text-stroke: none;
+  text-shadow:
+    -1px -1px 0 var(--text-stroke-color),
+    1px -1px 0 var(--text-stroke-color),
+    -1px 1px 0 var(--text-stroke-color),
+    1px 1px 0 var(--text-stroke-color);
 }
 
-@supports not (text-stroke: 1px var(--text-stroke-color)) {
+@supports (text-stroke: 1px var(--text-stroke-color)) {
   .image-label {
-    -webkit-text-stroke: none;
-    text-stroke: none;
-    text-shadow:
-      -1px -1px 0 var(--text-stroke-color),
-      1px -1px 0 var(--text-stroke-color),
-      -1px 1px 0 var(--text-stroke-color),
-      1px 1px 0 var(--text-stroke-color);
+    -webkit-text-stroke: 1px var(--text-stroke-color);
+    text-stroke: 1px var(--text-stroke-color);
   }
 }
 .footer {
@@ -258,16 +230,18 @@
   width: var(--block-width);
 }
 .footer-button {
+  height: min-content;
   background-color: var(--background-color);
   position: relative;
   align-self: center;
   justify-self: center;
   margin-inline-start: clamp(36px, calc(16.06667vw - 24.25px), 184px);
   margin-block-start: 50px;
-  margin-bottom: 100px;
+  margin-block-end: 100px;
 }
 
 .footer-button-description {
+  display: block;
   position: relative;
   z-index: 2;
   mix-blend-mode: difference;
@@ -288,17 +262,17 @@
 #save-dialog[open] {
   display: grid;
   box-sizing: border-box;
-  height: 191px;
   width: 341px;
   grid-template-columns: auto 1fr;
   grid-template-rows: 1fr 1fr;
-  margin-block-start: clamp(236px, calc((100vh - 341px) / 2), 549.5px);
+  justify-self: center;
+  align-self: center;
   position: fixed;
   background-color: var(--background-color);
-  padding: 25px 30px 30px 35px;
+  padding: 30px 20px 28px 30px;
 }
 #save-dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.75);
 }
 .dialog-discket {
   grid-row: 1;
@@ -314,33 +288,18 @@
   grid-row: 1;
   line-height: 130%; /*значение 150% из макета не совпадает*/
   size: 14px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 .dialog-close-button {
   margin-block-start: 25px;
-  padding: 12.5px 116.5px 4px 116.5px;
+  justify-content: center;
+  align-content: center;
   margin-inline-end: 10px;
   font-family: var(--font-accent), Helvetica, Arial, sans-serif;
   grid-column: 1/-1;
   grid-row: 2;
 }
 @media (width>=1440px) {
-  .first-sprint-card {
-    margin-block-start: 48px;
-  }
-
-  .second-sprint-card {
-    margin-block-start: 50px;
-  }
-  .second-sprint-about-card {
-    margin-block-start: 47px;
-  }
-  .third-sprint-card {
-    margin-block-start: 50px;
-  }
-  .here-sprint-card {
-    margin-block-start: 50px;
-  }
   .card-title {
     padding: 4px 10px;
   }
@@ -356,98 +315,24 @@
     grid-template-columns: min-content auto;
     margin-inline-start: 0px;
     border: 2px solid var(--accent-color);
+    gap: 8px;
+    padding: 17px 20px; /*значения по макету, но кнопка получается на два пикселя выше */
   }
 
   .footer-button-description {
     grid-column: 2;
-    justify-self: center;
-    align-self: center;
-    font-family: var(--font-accent), Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    margin: 15px 10px 17px 9px;
+    margin: 0px;
   }
   .footer-discket {
+    justify-self: center;
+    align-self: center;
+    grid-column: 1;
     width: 21px;
     height: 21px;
     grid-column: 1;
-    margin-block-start: 11px;
-    margin-inline-start: 10px;
+    margin: 0px;
   }
   .footer {
     height: max-content;
-  }
-  #save-dialog[open] {
-    margin-block-start: 384.5px;
-    width: 353px;
-    padding: 30px 20px 28px 30px;
-    background-color: var(--background-color);
-  }
-}
-.like-icon.is-liked .heart {
-  animation: heart-scale 0.3s ease-in 0.1s;
-}
-.like-icon.is-liked .sparks {
-  animation: sparks-fill 0.3s ease-in 0.3s 1;
-}
-.heart {
-  transform-origin: center;
-}
-.sparks {
-  fill: transparent;
-}
-.contour {
-  transition: fill 0.1s linear 0s;
-}
-.core {
-  transition: fill 0.3s linear 0.03s;
-}
-.main-body {
-  transition: fill 0.3s linear 0s;
-}
-.like-icon:hover .core {
-  transition: fill 0.3 linear 0s;
-  fill: var(--accent-color);
-}
-.like-icon:hover .main-body {
-  transition: fill 0.3s linear 0.05s;
-  fill: var(--accent-color);
-}
-.like-icon:active .core {
-  transition: fill 0.3 linear 0s;
-  fill: rgba(255, 0, 0, 1);
-}
-.like-icon:active .main-body {
-  transition: fill 0.3s linear 0.05s;
-  fill: rgba(255, 0, 0, 1);
-}
-.like-icon.is-liked .contour {
-  transition: fill 0.3s linear 0.06s;
-  fill: rgba(255, 0, 0, 1);
-}
-.like-icon.is-liked .core {
-  transition: fill 0.3s linear 0s;
-  fill: rgba(255, 0, 0, 1);
-}
-.like-icon.is-liked .main-body {
-  transition: fill 0.3s linear 0.05s;
-  fill: rgba(255, 0, 0, 1);
-}
-@keyframes heart-scale {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.25);
-  }
-}
-@keyframes sparks-fill {
-  0% {
-    fill: transparent;
-  }
-  50% {
-    fill: red;
-  }
-  100% {
-    fill: transparent;
   }
 }
