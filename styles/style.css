@@ -9,7 +9,11 @@
 ✦ button__text — для обозначения текстового элемента внутри кнопки
 
 */
-
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .page {
   background-image:
     var(--background-gradient-top), var(--background-gradient-middle),
@@ -35,7 +39,7 @@
   font-size: clamp(49px, 49px + 16 * ((100vw - 375px) / 1065), 65px);
   margin-top: clamp(120px, 120px + 10 * ((100vw - 375px) / 1065), 130px);
   margin-right: clamp(18px, 18px + 108.5 * ((100vw - 375px) / 1065), 126.5px);
-  margin-bottom: clamp(20px, 22px + -2 * ((100vw - 375px) / 1065), 22px);
+  margin-bottom: 18px;
   margin-left: clamp(14px, 14px + 108.5 * ((100vw - 375px) / 1065), 122.5px);
   vertical-align: bottom;
   line-height: 1;
@@ -57,7 +61,10 @@
   margin-block-start: 48px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(5, min-content);
+  grid-template-rows: repeat(4, min-content);
+}
+.zero-sprint-card {
+  margin-block-start: 98px;
 }
 .card-title {
   padding: 5px 11px;
@@ -68,19 +75,22 @@
   grid-column: 1/-1;
   grid-row: 1;
 }
-.card-description {
+.text-container {
+  margin-block-start: 26px;
   grid-row: 3;
+  grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
 }
 .card-text {
   font-family: var(--font-main), Helvetica, Arial, sans-serif;
-  padding: 20px 27px 25px 27px;
+  padding: 0px 27px 25px 24px;
   font-variation-settings: "wght" 410;
+  font-size: 18px;
   line-height: 21px;
-  letter-spacing: 0;
+  letter-spacing: normal;
   grid-column: 1/-1;
-}
-.card-after-text {
-  grid-row: 4;
 }
 .block-button {
   position: relative;
@@ -119,7 +129,7 @@
   grid-column: 2;
   margin-block-end: 20px;
   margin-inline-end: 160px;
-  grid-row: 5;
+  grid-row: 4;
   justify-self: end;
   line-height: 0;
   outline: none;
@@ -141,7 +151,7 @@
   margin-inline-start: auto;
   margin-block-start: auto;
   grid-column: 2;
-  grid-row: 5;
+  grid-row: 4;
 }
 .button__text {
   position: relative;
@@ -157,6 +167,7 @@
 }
 
 .image {
+  max-height: clamp(371px, 48.5vw, 720px);
   display: block;
   width: 100%;
   object-fit: cover;
@@ -209,8 +220,6 @@
   color: rgba(0, 0, 0, 1);
   opacity: 0.5;
   mix-blend-mode: hard-light;
-  -webkit-text-stroke: none;
-  text-stroke: none;
   text-shadow:
     -1px -1px 0 var(--text-stroke-color),
     1px -1px 0 var(--text-stroke-color),
@@ -220,27 +229,28 @@
 
 @supports (text-stroke: 1px var(--text-stroke-color)) {
   .image-label {
-    -webkit-text-stroke: 1px var(--text-stroke-color);
+    text-shadow: none;
     text-stroke: 1px var(--text-stroke-color);
   }
 }
-.footer {
-  justify-self: center;
-  align-self: center;
-  width: var(--block-width);
+@supports (-webkit-text-stroke: 1px var(--text-stroke-color)) {
+  .image-label {
+    text-shadow: none;
+    -webkit-text-stroke: 1px var(--text-stroke-color);
+  }
 }
-.footer-button {
+
+.save-button {
   height: min-content;
   background-color: var(--background-color);
   position: relative;
   align-self: center;
   justify-self: center;
-  margin-inline-start: clamp(36px, calc(16.06667vw - 24.25px), 184px);
   margin-block-start: 50px;
   margin-block-end: 100px;
 }
 
-.footer-button-description {
+.save-button-description {
   display: block;
   position: relative;
   z-index: 2;
@@ -252,7 +262,7 @@
   font-size: 14px;
   margin: 5px 10px 15px 10px;
 }
-.footer-discket {
+.save-discket {
   position: relative;
   z-index: 2;
   mix-blend-mode: difference;
@@ -267,9 +277,11 @@
   grid-template-rows: 1fr 1fr;
   justify-self: center;
   align-self: center;
+  justify-content: center;
+  align-content: center;
   position: fixed;
   background-color: var(--background-color);
-  padding: 30px 20px 28px 30px;
+  padding: 30px 20px 15px 20px;
 }
 #save-dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.75);
@@ -277,39 +289,36 @@
 .dialog-discket {
   grid-row: 1;
   grid-column: 1;
-  margin-block-start: 12px;
+  align-self: center;
 }
 .dialog-text {
   font-weight: 400;
   font-family: var(--font-accent), Helvetica, Arial, sans-serif;
   text-transform: uppercase;
-  margin-inline-start: 20px;
+  align-self: center;
+  margin-inline-start: 35px;
   grid-column: 2;
   grid-row: 1;
-  line-height: 130%; /*значение 150% из макета не совпадает*/
-  size: 14px;
+  line-height: 150%; /*значение 150% из макета не совпадает*/
   letter-spacing: 0;
 }
 .dialog-close-button {
   margin-block-start: 25px;
   justify-content: center;
   align-content: center;
-  margin-inline-end: 10px;
   font-family: var(--font-accent), Helvetica, Arial, sans-serif;
   grid-column: 1/-1;
   grid-row: 2;
+  margin-block-end: 10px;
+}
+.dialog-button-text {
+  text-transform: uppercase;
 }
 @media (width>=1440px) {
   .card-title {
     padding: 4px 10px;
   }
-  .card-description {
-    padding: 26px 29px 0px 25px;
-  }
-  .card-after-text {
-    padding: 25px 25px 25px 25px;
-  }
-  .footer-button {
+  .save-button {
     width: fit-content;
     display: grid;
     grid-template-columns: min-content auto;
@@ -319,11 +328,11 @@
     padding: 17px 20px; /*значения по макету, но кнопка получается на два пикселя выше */
   }
 
-  .footer-button-description {
+  .save-button-description {
     grid-column: 2;
     margin: 0px;
   }
-  .footer-discket {
+  .save-discket {
     justify-self: center;
     align-self: center;
     grid-column: 1;
@@ -331,8 +340,5 @@
     height: 21px;
     grid-column: 1;
     margin: 0px;
-  }
-  .footer {
-    height: max-content;
   }
 }
