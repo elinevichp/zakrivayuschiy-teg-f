@@ -64,7 +64,7 @@ main {
   grid-template-rows: repeat(4, min-content);
 }
 .card:first-child{
-    margin-block-start: 98px;
+  margin-block-start: 98px;
 }
 .card-title {
   padding: 5px 11px;
@@ -265,7 +265,6 @@ main {
 #save-dialog[open] {
   display: grid;
   width: 341px ;
-  overflow: hidden;
   box-sizing: border-box;
   grid-template-columns: auto 1fr;
   grid-template-rows: 1fr 1fr;
@@ -275,16 +274,16 @@ main {
   align-content: center;
   position: fixed;
   background-color: var(--background-color);
-  padding: 30px 45px 30px 45px;
+  padding: 30px 40px 30px 40px;
+  font-size: 14px ;
 }
 #save-dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.75);
 }
 .dialog-discket {
-  margin-inline-start: 3px;
   grid-row: 1;
   grid-column: 1;
-  margin-block-start: 14px;
+  margin-block-start: 12px;
 }
 .dialog-text {
   margin-inline-start: 20px;
@@ -298,13 +297,12 @@ main {
 }
 .dialog-close-button { 
   max-inline-size: clamp(21.313rem, 21.048rem + 1.127vw, 22.063rem);
-  margin-block-start: 20px;
+  margin-block-start: 30px;
   justify-content: center; 
   align-content: center; 
   font-family: var(--font-accent), Helvetica, Arial, sans-serif; 
   grid-column: 1/-1; 
   grid-row: 2; 
-  margin-block-end: 10px;
 }
 .dialog-button-text {
   text-transform: uppercase;
@@ -338,8 +336,8 @@ main {
     margin: 0px;
   }
   #save-dialog[open] {
-  width: 357px ;
-  padding: 30px 30px 15px 30px;
+  width: 353px ;
+  padding: 30px 30px 30px 30px;
 }
 
 }
