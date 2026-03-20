@@ -63,8 +63,8 @@ main {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(4, min-content);
 }
-.zero-sprint-card {
-  margin-block-start: 98px;
+.card:first-child{
+    margin-block-start: 98px;
 }
 .card-title {
   padding: 5px 11px;
@@ -227,21 +227,14 @@ main {
     1px 1px 0 var(--text-stroke-color);
 }
 
-@supports (text-stroke: 1px var(--text-stroke-color)) {
+@supports (text-stroke: 1px var(--text-stroke-color)) or (-webkit-text-stroke: 1px var(--text-stroke-color)) {
   .image-label {
     text-shadow: none;
     text-stroke: 1px var(--text-stroke-color);
-  }
-}
-@supports (-webkit-text-stroke: 1px var(--text-stroke-color)) {
-  .image-label {
-    text-shadow: none;
     -webkit-text-stroke: 1px var(--text-stroke-color);
   }
 }
-
 .save-button {
-  height: min-content;
   background-color: var(--background-color);
   position: relative;
   align-self: center;
@@ -271,8 +264,9 @@ main {
 }
 #save-dialog[open] {
   display: grid;
+  width: 341px ;
+  max-height: 190px;
   box-sizing: border-box;
-  width: 341px;
   grid-template-columns: auto 1fr;
   grid-template-rows: 1fr 1fr;
   justify-self: center;
@@ -281,7 +275,7 @@ main {
   align-content: center;
   position: fixed;
   background-color: var(--background-color);
-  padding: 30px 20px 15px 20px;
+  padding: 30px 45px 30px 44px;
 }
 #save-dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.75);
@@ -289,30 +283,31 @@ main {
 .dialog-discket {
   grid-row: 1;
   grid-column: 1;
-  align-self: center;
+  margin-block-start: 10px;
 }
 .dialog-text {
+  margin-inline-start: 20px;
   font-weight: 400;
+  size: 14px;
   font-family: var(--font-accent), Helvetica, Arial, sans-serif;
   text-transform: uppercase;
-  align-self: center;
-  margin-inline-start: 35px;
   grid-column: 2;
   grid-row: 1;
-  line-height: 150%; /*значение 150% из макета не совпадает*/
+  line-height: 150%; 
   letter-spacing: 0;
 }
-.dialog-close-button {
-  margin-block-start: 25px;
-  justify-content: center;
-  align-content: center;
-  font-family: var(--font-accent), Helvetica, Arial, sans-serif;
-  grid-column: 1/-1;
-  grid-row: 2;
-  margin-block-end: 10px;
+.dialog-close-button { 
+  max-inline-size: clamp(21.313rem, 21.048rem + 1.127vw, 22.063rem);
+  margin-block-start: 20px;
+  justify-content: center; 
+  align-content: center; 
+  font-family: var(--font-accent), Helvetica, Arial, sans-serif; 
+  grid-column: 1/-1; 
+  grid-row: 2; 
 }
 .dialog-button-text {
   text-transform: uppercase;
+  line-height: 90%;
 }
 @media (width>=1440px) {
   .card-title {
@@ -341,4 +336,9 @@ main {
     grid-column: 1;
     margin: 0px;
   }
+  #save-dialog[open] {
+  width: 357px ;
+  padding: 30px 30px 30px 30px;
+}
+
 }
