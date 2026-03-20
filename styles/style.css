@@ -288,7 +288,6 @@ main {
 .dialog-text {
   margin-inline-start: 20px;
   font-weight: 400;
-  size: 14px;
   font-family: var(--font-accent), Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   grid-column: 2;
