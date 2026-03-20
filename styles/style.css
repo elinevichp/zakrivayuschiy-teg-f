@@ -265,7 +265,7 @@ main {
 #save-dialog[open] {
   display: grid;
   width: 341px ;
-  max-height: 190px;
+  overflow: hidden;
   box-sizing: border-box;
   grid-template-columns: auto 1fr;
   grid-template-rows: 1fr 1fr;
@@ -275,15 +275,16 @@ main {
   align-content: center;
   position: fixed;
   background-color: var(--background-color);
-  padding: 30px 45px 30px 44px;
+  padding: 30px 45px 30px 45px;
 }
 #save-dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.75);
 }
 .dialog-discket {
+  margin-inline-start: 3px;
   grid-row: 1;
   grid-column: 1;
-  margin-block-start: 10px;
+  margin-block-start: 14px;
 }
 .dialog-text {
   margin-inline-start: 20px;
@@ -303,6 +304,7 @@ main {
   font-family: var(--font-accent), Helvetica, Arial, sans-serif; 
   grid-column: 1/-1; 
   grid-row: 2; 
+  margin-block-end: 10px;
 }
 .dialog-button-text {
   text-transform: uppercase;
@@ -337,7 +339,7 @@ main {
   }
   #save-dialog[open] {
   width: 357px ;
-  padding: 30px 30px 30px 30px;
+  padding: 30px 30px 15px 30px;
 }
 
 }
